@@ -47,7 +47,7 @@ function App() {
 
   const submit = React.useCallback((e) => {
     e.preventDefault()
-    // Use inputTerm directly instead of waiting for confirmSubmit to update.
+    
     dispatchTodo({ type: 'ADD', payload: inputTerm })
     
     // Append the new task to the todos list (using functional update for safety)
