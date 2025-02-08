@@ -7,6 +7,25 @@ import './App.css'
 function App() {
   const [isDark, setIsDark] = React.useState(false)
 
+  const [inputTerm, setInputTerm] = React.useState('')
+
+  const [confirmSubmit, setConfirmSubmit] = React.useState('')
+
+
+  
+
+
+
+  const inputHandler = React.useCallback((e) => {
+    const newValue = e.target.value
+    setInputTerm(newValue)
+  },[inputTerm])
+
+
+  const submit = React.useCallback((e) => {
+    e.preventDefault()
+    setConfirmSubmit(inputTerm)
+  },[inputTerm])
 
   React.useEffect(() => {
     if(isDark){
@@ -20,7 +39,7 @@ function App() {
   return (
     <>
       <Header isDark={isDark} onToggle={toggle} />
-      <SearchForm />
+      <SearchForm term={inputTerm} onInputHandler={inputHandler} onConfirm={submit} />
     </>
   )
 }
@@ -37,10 +56,10 @@ function Header({isDark, onToggle}) {
   )
 }
 
-function SearchForm(){
+function SearchForm({term, onInputHandler, onConfirm}){
   return(
-    <form className='form'>
-      <input type="text" placeholder="pls enter todo" />
+    <form className='form' onSubmit={onConfirm}>
+      <input type="text" placeholder="pls enter todo" value={term} onChange={onInputHandler} />
       <button type='submit'>
       <CiSquarePlus />
       </button>
