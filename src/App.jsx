@@ -74,6 +74,7 @@ function App() {
 
   // removeTodo: Removes the todo item from the todos array
   function removeTodo(itemToDelete) {
+    dispatchTodo({type: 'REMOVE'})
     setTodos(prevTodos => 
       prevTodos.filter(todo => todo.task !== itemToDelete.task)
     );
