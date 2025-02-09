@@ -6,14 +6,20 @@ import { IoIosCheckmark ,IoIosClose } from "react-icons/io";
 import './App.css'
 
 
-function reducer(state, action){
+// Instead of a single data object, the initial state is an array.
+const initialTodos = [];
+
+function todosReducer(state, action) {
   switch (action.type) {
-    case 'ADD':
-      return {task: action.payload, isCompelete: false}
-    case 'REMOVE':
-      return {task: action.payload, isCompelete: true}
+    case 'ADD': {
+      const newTodo = { task: action.payload, isCompelete: false };
+      return [...state, newTodo];
+    }
+    case 'REMOVE': {
+      return state.filter(todo => todo.task !== action.payload.task);
+    }
     default:
-      return state
+      return state;
   }
 }
 
@@ -24,36 +30,24 @@ function App() {
 
 
 
-  const [todos, setTodos] = React.useState([])
+  // Use the reducer to manage the entire todos list
+  const [todos, dispatchTodos] = React.useReducer(todosReducer, initialTodos)
 
-
-
-
-  const data = {
-    task: '',
-    isCompelete: false
-  }
-
-
-  const [todo, dispatchTodo] = React.useReducer(reducer ,data)
 
 
 
   const inputHandler = React.useCallback((e) => {
-    const newValue = e.target.value
-    setInputTerm(newValue)
-  },[inputTerm])
+    setInputTerm(e.target.value)
+  }, [])
 
 
   const submit = React.useCallback((e) => {
     e.preventDefault()
     
-    dispatchTodo({ type: 'ADD', payload: inputTerm })
+    // Dispatch an action to add a new todo
+    dispatchTodos({ type: 'ADD', payload: inputTerm })
     
-    // Append the new task to the todos list (using functional update for safety)
-    setTodos(prevTodos => [...prevTodos, { task: inputTerm, isCompelete: false }])
-    
-    // Clear the input field if desired
+    // Clear the input field
     setInputTerm('')
 
     
@@ -73,11 +67,8 @@ function App() {
 
 
   // removeTodo: Removes the todo item from the todos array
-  function removeTodo(itemToDelete) {
-    dispatchTodo({type: 'REMOVE'})
-    setTodos(prevTodos => 
-      prevTodos.filter(todo => todo.task !== itemToDelete.task)
-    );
+  const removeTodo = (itemToDelete) => {
+    dispatchTodos({ type: 'REMOVE', payload: itemToDelete })
   }
 
   return (
@@ -105,7 +96,7 @@ function SearchForm({term, onInputHandler, onConfirm}){
   return(
     <form className='form' onSubmit={onConfirm}>
       <input type="text" placeholder="pls enter todo" value={term} onChange={onInputHandler} />
-      <button type='submit'>
+      <button type='submit' disabled={!term}>
       <CiSquarePlus />
       </button>
     </form>
