@@ -1,12 +1,9 @@
-/* Global styles and variables */
 :root {
   --primary-color: #646cff;
-  --background-light: #ffffff;
-  --background-dark: #242424;
-  --text-light: #213547;
-  --text-dark: #ffffff;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
+  --background-color: #f9fafb;
+  --text-color: #1f2937;
+  --border-color: #e5e7eb;
+  --hover-color: #4318ff;
 }
 
 * {
@@ -16,13 +13,11 @@
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
   line-height: 1.5;
-  transition: var(--transition);
-  background-color: var(--background-light);
-  color: var(--text-light);
+  min-height: 100vh;
 }
 
 button {
@@ -31,58 +26,4 @@ button {
 
 input {
   font-family: inherit;
-}
-
-.dark_mode {
-  background-color: var(--background-dark);
-  color: var(--text-dark);
-}
-
-.pad-4{
-  padding: 4px;
-}
-.pad-6{
-  padding: 6px;
-}
-.pad-8{
-  padding: 8px;
-}
-.pad-12{
-  padding: 12px;
-}
-.pad-16{
-  padding: 16px;
-}
-.pad-24{
-  padding: 24px;
-}
-.pad-32{
-  padding: 32px;
-}
-.pad-48{
-  padding: 48px;
-}
-.margin-4{
-  margin: 4px;
-}
-.margin-6{
-  margin: 6px;
-}
-.margin-8{
-  margin: 8px;
-}
-.margin-12{
-  margin: 12px;
-}
-.margin-16{
-  margin: 16px;
-}
-.margin-24{
-  margin: 24px;
-}
-.margin-32{
-  margin: 32px;
-}
-.margin-48{
-  margin: 48px;
 }

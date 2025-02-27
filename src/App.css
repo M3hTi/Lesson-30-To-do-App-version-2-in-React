@@ -1,192 +1,78 @@
-/* Base styles and variables */
-:root {
-  --primary-color: #646cff;
-  --background-light: #ffffff;
-  --background-dark: #242424;
-  --text-light: #213547;
-  --text-dark: #ffffff;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  transition: var(--transition);
-  background-color: var(--background-light);
-  color: var(--text-light);
-}
-
-.dark_mode {
-  background-color: var(--background-dark);
-  color: var(--text-dark);
-}
-
-/* Header styles */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.1);
-}
-
-.header > h1 {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 600;
-  background: linear-gradient(120deg, var(--primary-color), #9499ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Button styles */
-.btn {
-  border: none;
-  cursor: pointer;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  background-color: var(--primary-color);
-  color: white;
-  transition: var(--transition);
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
-  box-shadow: var(--shadow);
-}
-
-/* Form styles */
-.form {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 0 2rem;
-  display: flex;
-  gap: 1rem;
-}
-
-.form input {
-  flex: 1;
-  padding: 0.8rem 1rem;
-  border: 1px solid rgba(128, 128, 128, 0.2);
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: var(--transition);
-  background-color: transparent;
-  color: inherit;
-}
-
-.form input:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: var(--shadow);
-}
-
-.form input::placeholder {
-  color: #888;
-}
-
-.form button {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 0.8rem;
-  cursor: pointer;
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.form button:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
-  box-shadow: var(--shadow);
-}
-
-.form button svg {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-/* List Container styles */
 .container {
   max-width: 800px;
   margin: 2rem auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
+}
+
+.title {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  flex: 1;
+  min-width: 200px;
+}
+
+.input:focus {
+  outline: 2px solid var(--primary-color);
+  border-color: transparent;
+}
+
+.btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn:hover {
+  background-color: var(--hover-color);
+}
+
+.list {
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-/* Todo Item styles */
-.todo-container {
+.todo-item {
   display: flex;
   align-items: center;
+  gap: 1rem;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(128, 128, 128, 0.1);
-  border-radius: 12px;
-  transition: var(--transition);
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.todo-container:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
-}
-
-.todo-container span:first-child {
+.todo-description {
   flex: 1;
-  font-size: 1rem;
-  color: inherit;
+  font-weight: 500;
 }
 
-.todo-container span:nth-child(2) {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0 1rem;
+.todo-date {
+  color: #6b7280;
   font-size: 0.9rem;
-  color: #888;
 }
 
-.todo-container span:nth-child(2) svg {
-  width: 1.2rem;
-  height: 1.2rem;
-}
-
-.todo-container span:nth-child(2) svg[data-icon="checkmark"] {
-  color: #22c55e;
-}
-
-.todo-container span:nth-child(2) svg[data-icon="close"] {
-  color: #ef4444;
-}
-
-.todo-container button {
-  background: transparent;
-  border: none;
-  padding: 0.5rem;
+.todo-status {
   cursor: pointer;
-  border-radius: 6px;
-  color: inherit;
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-}
-
-.todo-container button:hover {
-  background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
-}
-
-.todo-container button svg {
-  width: 1.5rem;
-  height: 1.5rem;
 }
