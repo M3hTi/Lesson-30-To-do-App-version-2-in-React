@@ -73,6 +73,10 @@
   font-size: 0.9rem;
 }
 
-/* .todo-status {
+.todo-status {
   cursor: pointer;
-} */
+}
+.line-through{
+  text-decoration: line-through;
+  opacity: 0.7;
+}
