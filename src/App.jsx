@@ -90,7 +90,7 @@ function Todo({ todoObj }) {
     <li className="todo-item">
       <span className="todo-description">{description}</span>
       <span className="todo-date">{date}</span>
-      <span className="todo-status">{!isCompelete && "❌"}</span>
+      <span>{!isCompelete && "❌"}</span>
     </li>
   );
 }
