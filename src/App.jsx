@@ -24,11 +24,15 @@ function App() {
   function handleTodo(item) {
     setTodos((todos) => [...todos, item]);
   }
+
+  function handleDeleteTodo(id) {
+    setTodos((todos) => todos.filter((todo) => todo.id !== id));
+  }
   return (
     <div className="container">
       <h1 className="title">Todo List</h1>
       <Form onAddToDo={handleTodo} />
-      <List todos={todos} />
+      <List todos={todos} onDeleteTodo={handleDeleteTodo} />
     </div>
   );
 }
@@ -73,24 +77,26 @@ function Form({ onAddToDo }) {
   );
 }
 
-function List({ todos }) {
+function List({ todos, onDeleteTodo }) {
   return (
     <ul className="list">
       {todos.map((todo) => (
-        <Todo todoObj={todo} key={todo.id} />
+        <Todo todoObj={todo} key={todo.id} onDeleteTodo={onDeleteTodo} />
       ))}
     </ul>
   );
 }
 
-function Todo({ todoObj }) {
-  const { description, date, isCompelete } = todoObj;
+function Todo({ todoObj, onDeleteTodo }) {
+  const { id, description, date, isCompelete } = todoObj;
 
   return (
     <li className="todo-item">
       <span className="todo-description">{description}</span>
       <span className="todo-date">{date}</span>
-      <span>{!isCompelete && "❌"}</span>
+      <span className="todo-status" onClick={() => onDeleteTodo(id)}>
+        {!isCompelete && "❌"}
+      </span>
     </li>
   );
 }
