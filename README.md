@@ -1,39 +1,36 @@
 # Minimal React Todo App
 
-A modern, minimal Todo application built with React and Vite, featuring an elegant UI with dark mode support.
-
-![Todo App](/public/todo%20screenshot.png)
-> A clean and minimal Todo application with dark mode support
+A clean and minimal Todo application built with React and Vite.
 
 ## Features
 
 - ✨ Clean and minimal UI design
-- 🌓 Dark/Light mode toggle
-- ➕ Add new tasks
-- ❌ Remove tasks
-- ✅ Mark tasks as complete/incomplete
+- 📝 Add new tasks with descriptions
+- 📅 Date selection for tasks
 - 🎯 Responsive design
 - 🚀 Fast and lightweight
-- 💅 Modern animations and transitions
+- 💅 Modern styling with CSS variables
 
 ## Tech Stack
 
 - React 18
 - Vite
-- React Icons
+- Nanoid (for unique IDs)
 - CSS3 with CSS Variables
 - Modern JavaScript (ES6+)
 
 ## Installation
 
 1. Clone the repository:
+
    ```bash
    git clone <repository-url>
    ```
 
 2. Navigate to the project directory:
+
    ```bash
-   cd react-icons
+   cd minimal-todo-app
    ```
 
 3. Install dependencies:
@@ -44,6 +41,7 @@ A modern, minimal Todo application built with React and Vite, featuring an elega
 ## Development
 
 Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -53,7 +51,7 @@ The application will be available at `http://localhost:5173`
 ## Project Structure
 
 ```
-react-icons/
+minimal-todo-app/
 ├── src/
 │   ├── App.jsx        # Main application component
 │   ├── App.css        # Component-specific styles
@@ -65,13 +63,21 @@ react-icons/
 └── vite.config.js
 ```
 
+## Components
+
+- `App`: Main component managing the todos state
+- `Form`: Handles task input with description and date
+- `List`: Renders the list of todos
+- `Todo`: Individual todo item component
+
 ## Styling
 
 The application uses a modern CSS approach with:
-- CSS Variables for theming
+
+- CSS Variables for consistent theming
 - Responsive design principles
-- Smooth transitions and animations
-- Clean component-based styling
+- Component-based styling
+- Clean and minimal UI elements
 
 ## Contributing
 
