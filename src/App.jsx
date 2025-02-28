@@ -29,14 +29,23 @@ function App() {
     setTodos((todos) => todos.filter((todo) => todo.id !== id));
   }
 
-  function handleToggleTodo(id){
-    setTodos(todos => todos.map(todo => todo.id === id ? {...todo, isCompelete: !todo.isCompelete} : todo))
+  function handleToggleTodo(id) {
+    setTodos((todos) =>
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, isCompelete: !todo.isCompelete } : todo
+      )
+    );
   }
   return (
     <div className="container">
       <h1 className="title">Todo List</h1>
       <Form onAddToDo={handleTodo} />
-      <List todos={todos} onDeleteTodo={handleDeleteTodo} onToggle={handleToggleTodo} />
+      <List
+        todos={todos}
+        onDeleteTodo={handleDeleteTodo}
+        onToggle={handleToggleTodo}
+      />
+      <Done todos={todos} />
     </div>
   );
 }
@@ -84,8 +93,14 @@ function Form({ onAddToDo }) {
 function List({ todos, onDeleteTodo, onToggle }) {
   return (
     <ul className="list">
+      <h2 className="tasks-title">Tasks:</h2>
       {todos.map((todo) => (
-        <Todo todoObj={todo} key={todo.id} onDeleteTodo={onDeleteTodo} onToggle={onToggle} />
+        <Todo
+          todoObj={todo}
+          key={todo.id}
+          onDeleteTodo={onDeleteTodo}
+          onToggle={onToggle}
+        />
       ))}
     </ul>
   );
@@ -94,16 +109,41 @@ function List({ todos, onDeleteTodo, onToggle }) {
 function Todo({ todoObj, onDeleteTodo, onToggle }) {
   const { id, description, date, isCompelete } = todoObj;
   return (
-    <li className={`todo-item ${isCompelete ? 'line-through' : ''}`}>
+    <li className={`todo-item ${isCompelete ? "line-through" : ""}`}>
       <span>
-        <input type="checkbox" checked={isCompelete} onChange={() => onToggle(id)}/>
+        <input
+          type="checkbox"
+          value={isCompelete}
+          onChange={() => onToggle(id)}
+        />
       </span>
       <span className="todo-description">{description}</span>
       <span className="todo-date">{date}</span>
-      <span className="todo-status"  onClick={() => onDeleteTodo(id)}>
-        {!isCompelete ? "❌" : '✅'}
+      <span className="todo-status" onClick={() => onDeleteTodo(id)}>
+        {!isCompelete ? "❌" : "✅"}
       </span>
     </li>
+  );
+}
+
+function Done({ todos }) {
+  const doneTodos = todos.filter((todo) => todo.isCompelete);
+  return (
+    <div className="done-section">
+      <h2 className="done-title">Done tasks</h2>
+      <ul className="done-list">
+        {doneTodos.map((todo) => {
+          const { id, description, date } = todo;
+          return (
+            <li key={id} className="done-item">
+              <span className="todo-description">{description}</span>
+              <span className="todo-date">{date}</span>
+              <span className="todo-status">✅</span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
 
